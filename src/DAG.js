@@ -1,7 +1,8 @@
-import romanPatternJSON from "./json/romanTypingParseDictionary.json" assert {type: "json"}
+import romanPatternJSON from "./json/romanTypingParseDictionary.json" assert { type: "json" };
+import { combination } from "./combination.js";
 
 const romanPattern = romanPatternJSON;
-console.log("romanPattern = ", romanPattern);
+// console.log("romanPattern = ", romanPattern);
 
 class DAG {
     /*
@@ -30,19 +31,42 @@ class DAG {
         for (const parsedValue in parsedList) {
             const hiragana = parsedValue;
 
-            for (const h in hiragana) {
-                let breakDownPattern = [];
-                let parsedHiragana = h;
 
-                function combination(valueNum, chooseNum) {
-
-                }
-            }
         }
     }
 
+    separateHiragana(hiragana) {
+        // hiraganaに入る文字列の最長は3なので長さ3の文字列を考えると
+        // "あいう"という文字列を分けるパターンの生成法は
+        // "あ1い2う"という文字の間のセパレータをそれぞれ選択するかどうか
+        // 言い換えれば2C2, 2C1のすべてのパターンで組み合わせを列挙し、
+        // セパレータの組み合わせごとに文字列を分割する方法を考えた。
 
+        let separetedPattern = [];
+        for (let i = 0; i < hiragana.length; i++) {
+            separetedPattern = separetedPattern.concat(combination(hiragana.length - 1, i));
+        }
+        let separatedHiraganaList = [];
+        separetedPattern.forEach(pattern => {
+            let separated = [];
+            // console.log("pattern:", pattern);
+            let str = "";
+            for (let i = 0; i < hiragana.length; i++) {
+                const ch = hiragana.charAt(i);
+                str += ch;
+                if (pattern.includes(i)) {
+                    separated.push(str);
+                    str = "";
+                }
+            }
+            if (str != "") {
+                separated.push(str);
+            }
+            separatedHiraganaList.push(separated);
+        })
 
+        return separatedHiraganaList;
+    }
 
     romanParse(sentence) {
         /*
@@ -85,3 +109,4 @@ class Node {
         this.#next = next;
     }
 }
+
