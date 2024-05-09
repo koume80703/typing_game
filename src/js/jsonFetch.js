@@ -4,6 +4,7 @@ async function fetchRomanPattern() {
     try {
         const responce = await fetch(romanPatternURL);
         const data = await responce.json();
+        console.log("romanPattern:", data);
         return data;
     } catch (error) {
         console.error("failed to fetch data:", error);
@@ -19,6 +20,7 @@ async function fetchWordsList() {
     try {
         const response = await fetch(wordsListURL);
         const data = await response.json();
+        console.log("wordsList:", data);
         return data;
     } catch (error) {
         console.error("failed to fetch data:", error);

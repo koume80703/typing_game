@@ -1,17 +1,21 @@
-import DAG from "./DAG.js";
 import { fetchWordsList } from "./jsonFetch.js";
+import TypeManager from "./TypeManager.js";
 
 let wordsList;
 fetchWordsList()
     .then((data) => {
         wordsList = data;
-        console.log("wordsList:", wordsList);
     })
     .catch((error) => {
         console.error(error);
     });
 
-let inGame = false;
+let isInGame = false;
+
+/**
+ * @type {TypeManager}
+ */
+let typeManager;
 
 window.onload = function () {
     // 初期設定
@@ -19,31 +23,50 @@ window.onload = function () {
 
 window.addEventListener("keydown", pushedKeyDown);
 function pushedKeyDown(event) {
-    let keyCode = event.key;
+    const keyCode = event.key;
     console.log("keyCode = " + keyCode);
 
-    if (!inGame) {
+    if (!isInGame) {
         if (keyCode == "Enter" || keyCode == " ") {
             gameStarted();
         }
+        return;
+    }
+    if (keyCode == "Escape") {
+        gameStopped();
+        return;
     }
 }
 
 function gameStarted() {
-    inGame = true;
+    isInGame = true;
+    typeManager = new TypeManager();
+
     document.getElementById("start").textContent = "ゲーム中";
 
     const rnd = Math.floor(Math.random() * wordsList.length);
-    const word = wordsList[rnd].hiragana;
+    const sentence = wordsList[rnd].hiragana;
+    const kanji = wordsList[rnd].kanji;
 
-    const dag = new DAG(word);
+    typeManager.sentence = sentence;
 
-    const romanStr = dag.romanStr;
+    const romanStr = typeManager.romanSample;
 
-    document.getElementById("word").textContent = word;
-    document.getElementById("romanWord").textContent = romanStr;
+    document.getElementById("sentence").textContent = sentence;
+    document.getElementById("kanji").textContent = kanji;
+    document.getElementById("romanStr").textContent = romanStr;
 
     startTimer();
+}
+
+function gameStopped() {
+    isInGame = false;
+
+    document.getElementById("start").textContent =
+        "ゲーム開始はSpaceまたはEnter";
+    document.getElementById("sentence").textContent = "";
+    document.getElementById("kanji").textContent = "";
+    document.getElementById("romanStr").textContent = "";
 }
 
 function startTimer() {
@@ -56,7 +79,7 @@ function startTimer() {
 
     function updateTimer() {
         const timerId = setTimeout(() => {
-            if (!inGame) {
+            if (!isInGame) {
                 clearTimeout(timerId);
                 return;
             }
