@@ -1,0 +1,20 @@
+{
+  "name": "typing",
+  "version": "1.0.0",
+  "description": "html, css, JavaScriptを用いて簡易的なタイピングゲームを作成する試み",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npx http-server"
+  },
+  "author": "kohei",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "eslint": "^9.2.0",
+    "express": "^4.19.2"
+  }
+}
