@@ -1,3 +1,17 @@
 body {
     background-color: blanchedalmond;
 }
+
+main {
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main p{
+    text-align: center;
+    font-size: xx-large;
+    border: 1px solid black;
+}
