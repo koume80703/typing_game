@@ -1,6 +1,10 @@
 # typing_game
 html, css, JavaScriptを用いて簡易的なタイピングゲームを作成する試み
 
+## TODO
+
+- wordsList.jsonに単語を追加できるような機能の追加。
+- 表示するひらがな文字列を入力済み文字列に応じて変化させる。
 
 ## 参考
 
