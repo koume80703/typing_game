@@ -19,23 +19,29 @@ let typeManager;
 
 window.onload = function () {
     // 初期設定
+    typeManager = new TypeManager();
 };
 
 window.addEventListener("keydown", pushedKeyDown);
 function pushedKeyDown(event) {
-    const keyCode = event.key;
-    console.log("keyCode = " + keyCode);
+    typeManager.currentKey = event.key;
+
+    console.log("keyCode =", typeManager.currentKey);
 
     if (!isInGame) {
-        if (keyCode == "Enter" || keyCode == " ") {
+        if (["Enter", " "].includes(typeManager.currentKey)) {
             gameStarted();
         }
         return;
     }
-    if (keyCode == "Escape") {
+    if (typeManager.currentKey == "Escape") {
         gameStopped();
         return;
     }
+
+    typeManager.update();
+
+    elementUpdate();
 }
 
 function gameStarted() {
@@ -44,17 +50,9 @@ function gameStarted() {
 
     document.getElementById("start").textContent = "ゲーム中";
 
-    const rnd = Math.floor(Math.random() * wordsList.length);
-    const sentence = wordsList[rnd].hiragana;
-    const kanji = wordsList[rnd].kanji;
+    typeManager.initSentence();
 
-    typeManager.sentence = sentence;
-
-    const romanStr = typeManager.romanSample;
-
-    document.getElementById("sentence").textContent = sentence;
-    document.getElementById("kanji").textContent = kanji;
-    document.getElementById("romanStr").textContent = romanStr;
+    elementUpdate();
 
     startTimer();
 }
@@ -67,6 +65,16 @@ function gameStopped() {
     document.getElementById("sentence").textContent = "";
     document.getElementById("kanji").textContent = "";
     document.getElementById("romanStr").textContent = "";
+}
+
+function elementUpdate() {
+    const sentence = typeManager.sentence;
+    const kanji = typeManager.kanji;
+    const romanStr = typeManager.romanSample;
+
+    document.getElementById("sentence").textContent = sentence;
+    document.getElementById("kanji").textContent = kanji;
+    document.getElementById("romanStr").textContent = romanStr;
 }
 
 function startTimer() {
