@@ -5,9 +5,13 @@
 //         "/workspaces/typing/src/json/romanTypingParseDictionary.json"
 //     )
 // );
+// const romanPatternDict = makeTypePatternDict();
 
 import { fetchRomanPattern } from "./jsonFetch.js";
 let romanPattern;
+/**
+ * @type [{[s:string] : string[]}]
+ */
 let romanPatternDict;
 fetchRomanPattern()
     .then((data) => {
@@ -20,9 +24,9 @@ fetchRomanPattern()
 
 /**
  * ひらがな文字列を受け取り、ローマ字タイピングパターンを返す。
- * ひらがな文字列は最大3文字に分割され、分割されたそれぞれのひらがな文字列のパターンをリストにして戻す。    
+ * ひらがな文字列は最大3文字に分割され、分割されたそれぞれのひらがな文字列のパターンをリストにして戻す。
  * @param {string} sentence
- * @returns [Dictionary{string : string[]}]
+ * @returns [{[s:string] : string[]}]
  */
 function convertHiraganaToRoman(sentence) {
     const parsedList = romanParse(sentence);
@@ -33,7 +37,9 @@ function convertHiraganaToRoman(sentence) {
         const hiraganaStr = parsedValue;
         const romanizedList = romanPatternDict[hiraganaStr];
 
-        legalRomanPatternList.push({ [hiraganaStr]: romanizedList });
+        legalRomanPatternList.push({
+            [hiraganaStr]: romanizedList,
+        });
     }
 
     return legalRomanPatternList;
@@ -50,6 +56,11 @@ function makeTypePatternDict() {
     return rpd;
 }
 
+/**
+ *
+ * @param {string} sentence
+ * @returns string[]
+ */
 function romanParse(sentence) {
     let idx = 0;
     let parsedList = [];
