@@ -15,3 +15,11 @@ main p{
     font-size: xx-large;
     border: 1px solid black;
 }
+
+table{
+    background-color: orange;
+}
+th, td {
+    border: 1px solid black;
+    text-align: center;
+}
