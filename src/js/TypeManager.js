@@ -42,7 +42,7 @@ class TypeManager {
     /**
      * @type {string[]}
      */
-    _correctTypeLog;
+    _validTypeLog;
 
     constructor() {
         this._sentence = null;
@@ -54,7 +54,7 @@ class TypeManager {
         this._currentKey = null;
 
         this._typeLog = [];
-        this._correctTypeLog = [];
+        this._validTypeLog = [];
     }
 
     initSentence() {
@@ -76,7 +76,7 @@ class TypeManager {
      */
     update() {
         if (this._isCorrectInput()) {
-            this._correctTypeLog.push(this._currentKey);
+            this._validTypeLog.push(this._currentKey);
 
             this._updateValidPatterns();
 
@@ -148,20 +148,28 @@ class TypeManager {
         }
         return str;
     }
-
-    /**
-     * @returns {number} - 入力されたキーの数
-     */
-    get typeCount() {
-        return this._typeLog.length();
-    }
-
     get sentence() {
         return this._sentence;
     }
-
     get kanji() {
         return this._kanji;
+    }
+    get typeCount() {
+        return this._typeLog.length;
+    }
+    get validTypeCount() {
+        return this._validTypeLog.length;
+    }
+    get correctRate() {
+        const DECIMAL_PLACES = 100;
+        if (this.typeCount == 0) {
+            return 0;
+        }
+        return (
+            Math.round(
+                (this.validTypeCount * 100 * DECIMAL_PLACES) / this.typeCount
+            ) / DECIMAL_PLACES
+        );
     }
 
     /**
