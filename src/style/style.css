@@ -1,6 +1,15 @@
 body {
     background-color: blanchedalmond;
 }
+table {
+    background-color: orange;
+}
+
+th,
+td {
+    border: 1px solid black;
+    text-align: center;
+}
 
 main {
     margin: 0;
@@ -16,10 +25,6 @@ main p{
     border: 1px solid black;
 }
 
-table{
-    background-color: orange;
-}
-th, td {
-    border: 1px solid black;
-    text-align: center;
+#typedStr {
+    color: grey;
 }

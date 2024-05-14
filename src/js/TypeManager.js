@@ -48,6 +48,12 @@ class TypeManager {
      */
     _invalidTypeLog;
 
+    /**
+     * 現在のひらがな文において正しく入力されたローマ字
+     * @type {string[]}
+     */
+    _typedStrLog;
+
     constructor() {
         this._sentence = null;
         this._romanLegalPatternList = null;
@@ -60,19 +66,12 @@ class TypeManager {
         this._typeLog = [];
         this._validTypeLog = [];
         this._invalidTypeLog = [];
+
+        this._typedStrLog = [];
     }
 
     initSentence() {
         this._updateSentence();
-    }
-
-    _updateSentence() {
-        const rnd = Math.floor(Math.random() * wordsList.length);
-        this._sentence = wordsList[rnd].hiragana;
-        this._kanji = wordsList[rnd].kanji;
-
-        this._romanLegalPatternList = convertHiraganaToRoman(this._sentence);
-        this._updateNextUnit();
     }
 
     /**
@@ -82,6 +81,7 @@ class TypeManager {
     update() {
         if (this._isCorrectInput()) {
             this._validTypeLog.push(this._currentKey);
+            this._typedStrLog.push(this._currentKey);
 
             this._updateValidPatterns();
 
@@ -97,6 +97,17 @@ class TypeManager {
         }
 
         this._invalidTypeLog.push(this._currentKey);
+    }
+
+    _updateSentence() {
+        this._typedStrLog = [];
+
+        const rnd = Math.floor(Math.random() * wordsList.length);
+        this._sentence = wordsList[rnd].hiragana;
+        this._kanji = wordsList[rnd].kanji;
+
+        this._romanLegalPatternList = convertHiraganaToRoman(this._sentence);
+        this._updateNextUnit();
     }
     /**
      * ひらがな単位に対応するローマ字パターンを更新する。
@@ -155,6 +166,13 @@ class TypeManager {
             const FIRST_ELEMENT = 0;
             str += pat[HIRAGANA_KEY][FIRST_ELEMENT];
         }
+        return str;
+    }
+    get typedStr() {
+        let str = "";
+        this._typedStrLog.forEach((ch) => {
+            str += ch;
+        });
         return str;
     }
     get sentence() {

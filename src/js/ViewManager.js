@@ -5,7 +5,8 @@ class ViewManager {
         const startElem = document.getElementById("start");
         const sentenceElem = document.getElementById("sentence");
         const kanjiElem = document.getElementById("kanji");
-        const romanStrElem = document.getElementById("romanStr");
+        const typedStrElem = document.getElementById("typedStr");
+        const untypedStrElem = document.getElementById("untypedStr");
         const totalTypeNumElem = document.getElementById("totalTypeNum");
         const validTypeNumElem = document.getElementById("validTypeNum");
         const validRateElem = document.getElementById("validRate");
@@ -15,7 +16,8 @@ class ViewManager {
             start: startElem,
             sentence: sentenceElem,
             kanji: kanjiElem,
-            romanStr: romanStrElem,
+            typedStr: typedStrElem,
+            untypedStr: untypedStrElem,
             totalTypeNum: totalTypeNumElem,
             validTypeNum: validTypeNumElem,
             validRate: validRateElem,
