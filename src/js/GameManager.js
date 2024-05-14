@@ -50,7 +50,7 @@ class GameManager {
         this._isInGame = true;
         this._typeManager = new TypeManager();
 
-        this._viewManager.display([{ start: "ゲーム中" }]);
+        this._viewManager.display("start", "ゲーム中");
 
         this._typeManager.initSentence();
 
@@ -95,7 +95,7 @@ class GameManager {
         this._timeManager = new TimeManager();
 
         this._timeManager.start((time) => {
-            this._viewManager.display([{ timer: time }]);
+            this._viewManager.display("timer", time);
         });
     }
 

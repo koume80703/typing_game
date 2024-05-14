@@ -23,12 +23,22 @@ class ViewManager {
         };
     }
 
-    display(keyContentList) {
+    display() {
+        let keyContentList = null;
+        if (arguments.length == 2) {
+            const key = arguments[0];
+            const value = arguments[1];
+            keyContentList = [{ [key]: value }];
+        } else if (arguments.length == 1) {
+            keyContentList = arguments[0];
+        }
+
         for (const pair of keyContentList) {
             const key = Object.keys(pair)[0];
             const content = Object.values(pair)[0];
             this._elements[key].textContent = content;
         }
+        return;
     }
 }
 
