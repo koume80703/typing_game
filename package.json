@@ -9,7 +9,7 @@
   },
   "author": "kohei",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "devDependencies": {
     "http-server": "^14.1.1"
   },
