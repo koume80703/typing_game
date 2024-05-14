@@ -24,13 +24,13 @@ const server = http.createServer((req, res) => {
             break;
     }
 
-    fs.readFile(filePath, function (error, data) {
+    fs.readFile(filePath, (error, content) => {
         res.writeHead(200, { "Content-Type": contentType });
-        res.write(data);
-        res.end();
+        res.end(content);
     });
 });
 
 const port = 8080;
-server.listen(port);
-console.log("Server listen on port " + port);
+server.listen(port, () => {
+    console.log("Server listen on port " + port);
+});
