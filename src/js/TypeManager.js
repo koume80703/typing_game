@@ -160,7 +160,7 @@ class TypeManager {
     get validTypeCount() {
         return this._validTypeLog.length;
     }
-    get correctRate() {
+    get validRate() {
         const DECIMAL_PLACES = 100;
         if (this.typeCount == 0) {
             return 0;

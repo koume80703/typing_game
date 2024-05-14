@@ -73,7 +73,7 @@ class GameManager {
             { romanStr: "" },
             { totalTypeNum: "0" },
             { validTypeNum: "0" },
-            { correctRate: "0" },
+            { validRate: "0" },
         ];
 
         this._viewManager.display(keyContentList);
@@ -86,7 +86,7 @@ class GameManager {
             { romanStr: this._typeManager.romanSample },
             { totalTypeNum: this._typeManager.typeCount },
             { validTypeNum: this._typeManager.validTypeCount },
-            { correctRate: this._typeManager.correctRate },
+            { validRate: this._typeManager.validRate },
         ];
         this._viewManager.display(keyContentList);
     }

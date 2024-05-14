@@ -8,7 +8,7 @@ class ViewManager {
         const romanStrElem = document.getElementById("romanStr");
         const totalTypeNumElem = document.getElementById("totalTypeNum");
         const validTypeNumElem = document.getElementById("validTypeNum");
-        const correctRateElem = document.getElementById("correctRate");
+        const validRateElem = document.getElementById("validRate");
         const timerElem = document.getElementById("timer");
 
         this._elements = {
@@ -18,7 +18,7 @@ class ViewManager {
             romanStr: romanStrElem,
             totalTypeNum: totalTypeNumElem,
             validTypeNum: validTypeNumElem,
-            correctRate: correctRateElem,
+            validRate: validRateElem,
             timer: timerElem,
         };
     }
