@@ -43,6 +43,10 @@ class TypeManager {
      * @type {string[]}
      */
     _validTypeLog;
+    /**
+     * @type {string[]}
+     */
+    _invalidTypeLog;
 
     constructor() {
         this._sentence = null;
@@ -55,6 +59,7 @@ class TypeManager {
 
         this._typeLog = [];
         this._validTypeLog = [];
+        this._invalidTypeLog = [];
     }
 
     initSentence() {
@@ -87,7 +92,11 @@ class TypeManager {
                     this._updateNextUnit();
                 }
             }
+
+            return;
         }
+
+        this._invalidTypeLog.push(this._currentKey);
     }
     /**
      * ひらがな単位に対応するローマ字パターンを更新する。
