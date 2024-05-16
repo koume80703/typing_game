@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "npx http-server"
+    "server": "node app/serverOnExpress.js"
   },
   "author": "kohei",
   "license": "ISC",
