@@ -1,12 +1,13 @@
 const path = require("path");
-
 const express = require("express");
+
 const app = express();
 
-const port = 8080;
+let filePath;
 
 app.use((req, res, next) => {
     console.log(req.method, req.path, req.protocol, req.httpVersion);
+    filePath = path.join(__dirname, "public", req.url);
     next();
 });
 
@@ -15,14 +16,14 @@ app.get("*.js", (req, res) => {
     res.status(200)
         .type(".js")
         // .set("content-type", "application/javascript")
-        .sendFile(path.join(__dirname, req.url));
+        .sendFile(filePath);
 });
 
 app.get("*.css", (req, res) => {
     res.status(200)
         .type(".css")
         // .set("content-type", "text/css")
-        .sendFile(path.join(__dirname, req.url));
+        .sendFile(filePath);
 });
 
 app.get("*.json", (req, res) => {
@@ -30,13 +31,18 @@ app.get("*.json", (req, res) => {
     res.status(200)
         .type(".json")
         // .set("content-type", "application/json")
-        .sendFile(path.join(__dirname, req.url));
+        .sendFile(filePath);
 });
 
 app.get("/", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "index.html"));
+    res.status(200).sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+app.get("/admin", (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, "admin.html"));
+});
+
+const port = 8080;
 app.listen(port, () => {
     console.log("Server listen on port " + port);
 });
