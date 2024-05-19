@@ -5,7 +5,20 @@ import ViewManager from "./ViewManager.js";
 class GameMode {
     static NORMAL = Symbol("normal");
     static ENDLESS = Symbol("endless");
+
+    static strToMode(str) {
+        switch (str) {
+            case "normal":
+                return GameMode.NORMAL;
+            case "endless":
+                return GameMode.ENDLESS;
+            default:
+                throw new Error("Illegal string argument of strToMode()");
+        }
+    }
 }
+
+export { GameMode };
 
 class GameManager {
     /**
@@ -29,9 +42,12 @@ class GameManager {
      */
     _gameMode;
 
-    constructor(gameMode = GameMode.NORMAL) {
+    constructor(gameMode) {
+        if (gameMode === null) {
+            throw new Error("Not selected game mode");
+        }
         this._isInGame = false;
-        this._gameMode = gameMode;
+        this._gameMode = GameMode.strToMode(gameMode);
         this._typeManager = new TypeManager();
         this._viewManager = new ViewManager();
     }
