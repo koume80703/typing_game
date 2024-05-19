@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "admin.html"));
+    res.status(200).sendFile(path.join(__dirname, "public", "admin.html"));
 });
 
 const port = 8080;
