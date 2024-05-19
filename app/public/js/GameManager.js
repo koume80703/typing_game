@@ -2,6 +2,11 @@ import TypeManager from "./TypeManager.js";
 import TimeManager from "./TimeManager.js";
 import ViewManager from "./ViewManager.js";
 
+class GameMode {
+    static NORMAL = Symbol("normal");
+    static ENDLESS = Symbol("endless");
+}
+
 class GameManager {
     /**
      * @type {boolean}
@@ -19,14 +24,32 @@ class GameManager {
      * @type {ViewManager}
      */
     _viewManager;
+    /**
+     * @type {GameMode}
+     */
+    _gameMode;
 
-    constructor() {
+    constructor(gameMode = GameMode.NORMAL) {
         this._isInGame = false;
+        this._gameMode = gameMode;
         this._typeManager = new TypeManager();
         this._viewManager = new ViewManager();
     }
 
     pushedKeyDown(event) {
+        switch (this._gameMode) {
+            case GameMode.NORMAL:
+                this._normalGameProcess(event);
+                break;
+            case GameMode.ENDLESS:
+                this._endlessGameProcess(event);
+                break;
+            default:
+                throw new Error("Illegal game mode input");
+        }
+    }
+
+    _normalGameProcess(event) {
         this._typeManager.currentKey = event.key;
 
         console.log("keyCode =", this._typeManager.currentKey);
@@ -45,6 +68,8 @@ class GameManager {
 
         this._viewUpdate();
     }
+
+    _endlessGameProcess(event) {}
 
     _start() {
         this._isInGame = true;
