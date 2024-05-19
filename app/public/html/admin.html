@@ -1,16 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <title>管理者用画面</title>
-    <link rel="stylesheet" rel="./style/admit.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>管理者ダッシュボード</title>
+    <link rel="stylesheet" href="style/admin.css" />
   </head>
-
   <body>
-    <form action="addTowordList" method="post">
-      <input type="text" name="kanji" />
-      <input type="text" name="ひらがな" />
-      <input type="submit" value="登録" />
-    </form>
+    <header class="navbar">
+      <div class="navbar-brand">管理者ダッシュボード</div>
+      <div class="navbar-menu">
+        <a href="#">ホーム</a>
+        <a href="#">ユーザー管理</a>
+        <a href="#">設定</a>
+        <a href="/">ログアウト</a>
+      </div>
+    </header>
+    <div class="container">
+      <aside class="sidebar">
+        <ul>
+          <li><a href="#">ダッシュボード</a></li>
+          <li><a href="#">ユーザー</a></li>
+          <li><a href="#">レポート</a></li>
+          <li><a href="#">設定</a></li>
+        </ul>
+      </aside>
+      <main class="main-content">
+        <h1>ダッシュボード</h1>
+        <div class="cards">
+          <div class="card">
+            <h2>カード1</h2>
+            <p>内容1</p>
+          </div>
+          <div class="card">
+            <h2>カード2</h2>
+            <p>内容2</p>
+          </div>
+          <div class="card">
+            <h2>カード3</h2>
+            <p>内容3</p>
+          </div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
