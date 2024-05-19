@@ -35,11 +35,11 @@ app.get("*.json", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "public", "index.html"));
+    res.status(200).sendFile(path.join(__dirname, "public/html", "index.html"));
 });
 
 app.get("/admin", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "public", "admin.html"));
+    res.status(200).sendFile(path.join(__dirname, "public/html", "admin.html"));
 });
 
 const port = 8080;
