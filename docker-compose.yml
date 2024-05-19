@@ -6,6 +6,8 @@ services:
     build: .
     container_name: 'node'
     tty: true
+    ports:
+      - "8080:80"
     volumes:
       - type: bind
         source: "./src"
