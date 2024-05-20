@@ -75,7 +75,7 @@ class GameManager {
             }
             return;
         }
-        if (this._typeManager.currentKey == "Escape") {
+        if (this._typeManager.currentKey === "Escape") {
             this._stop();
             return;
         }

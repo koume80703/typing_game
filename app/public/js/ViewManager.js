@@ -27,11 +27,11 @@ class ViewManager {
 
     display() {
         let keyContentList = null;
-        if (arguments.length == 2) {
+        if (arguments.length === 2) {
             const key = arguments[0];
             const value = arguments[1];
             keyContentList = [{ [key]: value }];
-        } else if (arguments.length == 1) {
+        } else if (arguments.length === 1) {
             keyContentList = arguments[0];
         }
 

@@ -189,7 +189,7 @@ class TypeManager {
     }
     get validRate() {
         const DECIMAL_PLACES = 100;
-        if (this.typeCount == 0) {
+        if (this.typeCount === 0) {
             return 0;
         }
         return (
