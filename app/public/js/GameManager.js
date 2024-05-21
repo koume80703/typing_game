@@ -18,8 +18,6 @@ class GameMode {
     }
 }
 
-export { GameMode };
-
 class GameManager {
     /**
      * @type {boolean}
@@ -42,7 +40,7 @@ class GameManager {
      */
     _gameMode;
 
-    constructor(gameMode) {
+    constructor(gameMode = null) {
         if (gameMode === null) {
             throw new Error("Not selected game mode");
         }
