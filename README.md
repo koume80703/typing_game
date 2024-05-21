@@ -11,6 +11,8 @@ html, css, JavaScript を用いて簡易的なタイピングゲームを作成�
   - Normal モードと Endless モードの実装を予定
 - ゲーム画面等の整理
   - css を用いて画面をもう少し整える。
+  - react, vue.js, jquery等検討
+  - reactが本命
 
 ## 参考
 
