@@ -40,7 +40,6 @@ class ViewManager {
             const content = Object.values(pair)[0];
             this._elements[key].textContent = content;
         }
-        return;
     }
 }
 
