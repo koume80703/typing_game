@@ -49,5 +49,5 @@ app.get("/admin", (req, res) => {
 
 const port = 8080;
 app.listen(port, () => {
-    console.log("Server listen on port " + port);
+    console.log("Express Server listen on port " + port);
 });
